@@ -1,0 +1,98 @@
+<div class="container">
+    <div class="section-inner-padding sections-darker">
+
+        <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#rawLocationModal">
+            View Raw JSON
+        </button>
+
+        <h2 class="h3 sub-header">Relationship Information</h2>
+
+
+
+
+        <form class="form-inline form-inline-display ng-pristine ng-valid">
+            <div class="form-group">
+                <p>Relationship Type</p>
+                <p class="h5 ng-binding" data-ng-bind="currRelationship.relationshipType"></p>
+            </div>
+            <div class="form-group">
+                <p>Start Date</p>
+                <p class="h5 ng-binding" data-ng-bind="currRelationship.startDate"></p>
+            </div>
+            <div class="form-group">
+                <p>uuid</p>
+                <p class="h5 ng-binding" data-ng-bind="currRelationship.uuid"></p>
+            </div>
+
+
+        </form>
+    </div>
+
+
+
+
+    <div>
+        <!-- Individuals -->
+
+        <table class="table">
+            <tr>
+                <h3>Individual A</h3>
+            </tr>
+            <tr>
+                <th></th>
+                <th>uuid</th>
+                <th>first</th>
+                <th>last</th>
+                <th>gender</th>
+                <th>extId</th>
+            </tr>
+            <tr ng-repeat="ind in indivA">
+                <td><button ng-click="selectIndividual(ind)">select</button></td>
+                <td>{{ind.uuid}}</td>
+                <td>{{ind.firstName}}</td>
+                <td>{{ind.lastName}}</td>
+                <td>{{ind.gender}}</td>
+                <td>{{ind.extId}}</td>
+            </tr>
+        </table>
+
+        <table class="table">
+            <tr>
+                <h3>Individual B</h3>
+            </tr>
+            <tr>
+                <th></th>
+                <th>uuid</th>
+                <th>first</th>
+                <th>last</th>
+                <th>gender</th>
+                <th>extId</th>
+            </tr>
+            <tr ng-repeat="ind in indivB">
+                <td><button ng-click="selectIndividual(ind)">select</button></td>
+                <td>{{ind.uuid}}</td>
+                <td>{{ind.firstName}}</td>
+                <td>{{ind.lastName}}</td>
+                <td>{{ind.gender}}</td>
+                <td>{{ind.extId}}</td>
+            </tr>
+        </table>
+
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="rawLocationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <pre>{{currRelationship | json}}</pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>

@@ -1,0 +1,55 @@
+<div class="colContainer">
+
+    <!-- Far Left column -->
+    <div class="col">
+
+
+        <div class="panel-heading">
+            <h3>Selected</h3>
+            <div>{{selectedList.length}}</div>
+        </div>
+        <div><p></p></div>
+
+        <!--Hierarchy-->
+        <div class="list-group" ng-repeat="selection in selectedList">
+            <h4 class="list-group-item-heading">{{selection.level.name}}</h4>
+            <p class="list-group-item" ng-click="changeSelected(selectedList.indexOf(selection)+1)">
+                {{selection.name}}
+                <button type="button" class="btn btn-primary pull-right" ng-click="changeSelected(selectedList.indexOf(selection));setExpanded(1,false);setExpanded(2,false)">x</button>
+
+            </p>
+        </div>
+
+        <!--Location -->
+        <div ng-if="currLocation">
+            <div><p></p></div>
+            <div class="list-group">
+                <h4 class="list-grou-item-heading">Location</h4>
+                <p class="list-group-item"   ng-click="selectLocation(currLocation)">
+                    {{currLocation.name}}
+                    <button type="button" class="btn btn-primary pull-right" ng-click="selectLocation(null)">x</button>
+                </p>
+            </div>
+        </div>
+
+        <!--Individual -->
+        <div ng-if="currIndividual">
+            <div><p></p></div>
+            <div class="list-group">
+                <h4 class="list-grou-item-heading">Individual</h4>
+                <p class="list-group-item"   ng-click="selectIndividual(currIndividual)">
+                    {{currIndividual.lastName}}, {{currIndividual.firstName}}
+                    <button type="button" class="btn btn-primary pull-right" ng-click="selectIndividual(null)">x</button>
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div ui-view></div>
+
+
+</div>
+

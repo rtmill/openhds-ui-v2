@@ -1,0 +1,117 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+
+            <div class="section-inner-padding">
+
+<div>
+    <header class="sections sections-no-padding">
+        <h1>{{currLocHier.name}}</h1>
+    </header>
+
+
+
+
+
+</div>
+                <!-- Hierarchies -->
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <button ng-if="comps[0].expanded" ng-click="setExpanded(0,false)"><h2>-</h2></button>
+                                <button ng-if="!comps[0].expanded" ng-click="setExpanded(0,true)"><h2>+</h2></button>
+                            </td>
+                            <td>
+                                <h3>{{comps[0].name}}</h3>
+                            </td>
+
+                            </tr>
+                        </table>
+                    <table ng-if="comps[0].expanded">
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>UUID</th>
+                            <th>ExtId</th>
+                        </tr>
+                        <tr ng-repeat="lh in locHierarchies | filter:{parent:{uuid: sel}}">
+                            <td>
+                              <button ng-click="makeLevelMap();selectHierarchy(lh)">select</button>
+                            </td>
+                            <td>{{lh.name}}</td>
+                            <td>{{lh.uuid}}</td>
+                            <td>{{lh.extId}}</td>
+                        </tr>
+                        </table>
+                    </div>
+
+                <!-- Locations -->
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <button ng-if="comps[1].expanded" ng-click="setExpanded(1,false)"><h2>-</h2></button>
+                                <button ng-if="!comps[1].expanded" ng-click="setExpanded(1,true);getLocations()"><h2>+</h2></button>
+                            </td>
+                            <td>
+                                <h3>{{comps[1].name}}</h3>
+                            </td>
+                        </tr>
+                        </table>
+                    <table ng-if="comps[1].expanded">
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>UUID</th>
+                            <th>ExtId</th>
+                        </tr>
+                        <tr ng-repeat="loc in locations.content">
+                            <td><button ng-click="selectLocation(loc)">select</button></td>
+                            <td>{{loc.name}}</td>
+                            <td>{{loc.uuid}}</td>
+                            <td>{{loc.extId}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Individuals -->
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <button ng-if="comps[2].expanded" ng-click="setExpanded(2,false)"><h2>-</h2></button>
+                                <button ng-if="!comps[2].expanded" ng-click="setExpanded(2,true);getIndividuals()"><h2>+</h2></button>
+                            </td>
+                            <td>
+                                <h3>{{comps[2].name}}</h3>
+                            </td>
+                        </tr>
+                    </table>
+                    <table ng-if="comps[2].expanded">
+                        <tr>
+                            <th></th>
+                            <th>First</th>
+                            <th>Last</th>
+                            <th>UUID</th>
+                            <th>ExtId</th>
+                        </tr>
+                        <tr ng-repeat="indiv in individuals.content">
+                            <td><button ng-click="selectIndividual(indiv)">select</button></td>
+                            <td>{{indiv.firstName}}</td>
+                            <td>{{indiv.lastName}}</td>
+                            <td>{{indiv.uuid}}</td>
+                            <td>{{indiv.extId}}</td>
+                        </tr>
+                    </table>
+
+
+                </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>

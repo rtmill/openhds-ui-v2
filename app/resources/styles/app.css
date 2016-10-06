@@ -1,0 +1,148 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+table {
+    border: 1px solid #666;
+    width: 100%;
+}
+th {
+    background: #f8f8f8;
+    font-weight: bold;
+    padding: 2px;
+}
+
+
+.colContainer {
+    width:100%;
+    height:100%;
+    position:absolute;
+
+}
+
+.col {
+    left:10px;
+    right:10px;
+    float:left;
+    bottom:10px;
+    width:15%;
+    height:100%;
+    border-right:solid 1px #CCCCCC;
+    overflow-y:auto;
+    background-color: #f3f5f7;
+
+}
+
+.colContent{
+
+    left:10px;
+    right:10px;
+    bottom:10px;
+    overflow-y:auto;
+    border-bottom:solid 1px #CCCCCC;
+    background-color: #f3f5f7;
+
+
+
+}
+
+.colInfo{
+    background-color: #f9fafb;
+    border-right:solid 1px #CCCCCC;
+}
+
+.colActions{
+    float:right;
+    width: 16.6666666667%;
+}
+
+
+.colRelated{
+
+    left:10px;
+    right:10px;
+    bottom:10px;
+    overflow-y:auto;
+
+
+}
+
+.col2 {
+    left:10px;
+    right:10px;
+    float:right;
+    bottom:10px;
+    width:25%;
+    height:100%;
+    border-left:solid 1px #CCCCCC;
+    overflow-y:auto;
+    background-color: #f9fafb;
+}
+
+
+#sidebar {
+    position: absolute;
+    left: 10px;
+    top: 80px;
+    bottom: 20px;
+    width: 300px;
+    border:solid 1px #CCCCCC;
+    overflow-y: scroll;
+}
+
+#sidebar2 {
+    position: absolute;
+    left: 315px;
+    top: 80px;
+    bottom: 20px;
+    width: 300px;
+    border:solid 1px #CCCCCC;
+    overflow-y: scroll;
+}
+
+#content {
+    position: absolute;
+    top: 80px;
+    bottom: 20px;
+    left:615px;
+    right:20px;
+}
+
+.create-form, .edit-form {
+    padding: 20px;
+}
+
+.div.tableDiv {
+    margin-bottom: 15px;
+}
+
+.modal .modal-body {
+    overflow-y: auto;
+}

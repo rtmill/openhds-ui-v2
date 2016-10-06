@@ -1,0 +1,230 @@
+<div class="container">
+
+    <div class="section-inner-padding sections-darker">
+
+        <button type="button" class="btn btn-danger pull-right" data-toggle="modal" ng-click="setTemp(currLocation)" data-target="#editIndividualModal">
+            Edit
+        </button>
+
+                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">
+                   View Raw JSON
+                </button>
+
+                <h2 class="h3 sub-header">Individual Information</h2>
+
+
+
+
+
+                <form class="form-inline form-inline-display ng-pristine ng-valid">
+                    <div class="form-group">
+                        <p>First Name</p>
+                        <p class="h5 ng-binding" data-ng-bind="currIndividual.firstName"></p>
+                    </div>
+                    <div class="form-group">
+                        <p>Last Name</p>
+                        <p class="h5 ng-binding" data-ng-bind="currIndividual.lastName"></p>
+                    </div>
+                    <div class="form-group">
+                        <p>Gender</p>
+                        <p class="h5 ng-binding" data-ng-bind="currIndividual.gender"></p>
+                    </div>
+                    <div class="form-group">
+                        <p>extId</p>
+                        <p class="h5 ng-binding" data-ng-bind="currIndividual.extId"></p>
+                    </div>
+                    <div class="form-group">
+                        <p>uuid</p>
+                        <p class="h5 ng-binding" data-ng-bind="currIndividual.uuid"></p>
+                    </div>
+                    <div class="form-group">
+                        <p>Collected by</p>
+                        <p class="h5 ng-binding" data-ng-bind="currIndividual.collectedBy.uuid"></p>
+                    </div>
+                    <div class="form-group">
+                        <p>Collected date</p>
+                        <p class="h5 ng-binding" data-ng-bind="currIndividual.collectionDateTime"></p>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+    <div>
+                <div>
+                    <!-- Memberships -->
+                    <table class="table">
+                        <tr>
+                            <h3>Memberships</h3>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>uuid</th>
+                            <th>start date</th>
+                            <th>start type</th>
+                            <th>social group</th>
+                        </tr>
+                        <tr ng-repeat="mem in memberships">
+                            <td><button ng-click="selectMembership(mem)">select</button></td>
+                            <td>{{mem.uuid}}</td>
+                            <td>{{mem.startDate}}</td>
+                            <td>{{mem.startType}}</td>
+                            <td>{{mem.socialGroup.uuid}}</td>
+                        </tr>
+                    </table>
+
+                    <!-- Relationships -->
+                    <table class="table">
+                        <tr>
+                            <h3>Relationships</h3>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>uuid</th>
+                            <th>individual as</th>
+                            <th>start date</th>
+                            <th>relationship type</th>
+                            <th>other individual</th>
+                        </tr>
+                        <tr ng-repeat="rel in relA">
+                            <td><button ng-click="selectRelationship(rel)">select</button></td>
+                            <td>{{rel.uuid}}</td>
+                            <td>A</td>
+                            <td>{{rel.startDate}}</td>
+                            <td>{{rel.relationshipType}}</td>
+                            <td>{{rel.individualB.uuid}}</td>
+                        </tr>
+                        <tr ng-repeat="rel in relB">
+                            <td><button ng-click="selectRelationship(rel)">select</button></td>
+                            <td>{{rel.uuid}}</td>
+                            <td>B</td>
+                            <td>{{rel.startDate}}</td>
+                            <td>{{rel.relationshipType}}</td>
+                            <td>{{rel.individualA.uuid}}</td>
+                        </tr>
+                    </table>
+
+
+                    <!-- Residencies -->
+
+                    <table class="table">
+                        <tr>
+                            <h3>Residencies</h3>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>uuid</th>
+                            <th>start date</th>
+                            <th>start type</th>
+                            <th>location</th>
+                        </tr>
+                        <tr ng-repeat="resi in resid">
+                            <td><button ng-click="selectResidency(resi)">select</button></td>
+                            <td>{{resi.uuid}}</td>
+                            <td>{{resi.startDate}}</td>
+                            <td>{{resi.startType}}</td>
+                            <td>{{resi.location.uuid}}</td>
+                        </tr>
+                    </table>
+
+                </div>
+
+
+
+
+            </div>
+
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <pre>{{currIndividual | json}}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Edit Individual Modal -->
+<div class="modal fade" id="editIndividualModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h1 class="sub-header">Edit Individual</h1>
+                            <em class="text-muted">Click submit to save</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="col-md-8 col-md-offset-2">
+
+                    <div class="form-group">
+                        <label for="uuid">UUID</label>
+                        <input type="text" class="form-control" id="uuid" ng-model="tempIndiv.uuid" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="entityStatus">Entity Status</label>
+                        <input type="text" class="form-control" id="entityStatus" ng-model="tempIndiv.entityStatus">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="extId">External ID</label>
+                        <input type="text" class="form-control" id="extId" ng-model="tempIndiv.extId">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">First name</label>
+                        <input type="text" class="form-control" id="name" ng-model="tempIndiv.firstName">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Gender</label>
+                        <input type="text" class="form-control" id="type" ng-model="tempIndiv.gender">
+                    </div>
+
+
+                    <div>
+                        <pre>toSubmit: {{indivSubmit | json}}</pre>
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="form-group form-group-action">
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editOwnerSuccessModal" data-dismiss="modal" aria-label="Close" ng-click="saveLocation()">Update Location</button>
+                        <button class="btn" ng-click="setTemp()">Reset</button>
+                        <button class="btn" ng-click="saveIndividual()">Save</button>
+                        <button class="btn btn-link" class="close" data-dismiss="modal" aria-label="Close" >Cancel</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
